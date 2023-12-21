@@ -3,7 +3,6 @@ from decimal import Decimal
 
 DATE_FORMAT = '%Y-%m-%d'
 
-
 # goods = {
 #     # 'Пельмени Универсальные': [
 #     #     {'amount': Decimal('0.5'), 'expiration_date': datetime.date(2023, 7, 15)},
@@ -28,7 +27,6 @@ def add(items, title, amount, expiration_date=None):
 
 def add_by_note(items, note):
     list_str = str.split(note, ' ')
-    print(list_str)
     if '-' in list_str[-1]:
         title = str.join(' ', list_str[:-2])
         good_amount = Decimal(list_str[-2])
@@ -86,26 +84,23 @@ def expire(items, in_advance_days=0):
 # print(amount(goods, 'яйца'))
 # print(amount(goods, 'Яйца'))
 # print(amount(goods, 'Пельмени Универсальные'))
-# print(expire(goods))
-# print(expire(goods, 1))
+
+
+goods = {
+    'Хлеб': [
+        {'amount': Decimal('1'), 'expiration_date': None},
+        {'amount': Decimal('1'), 'expiration_date': date(2023, 12, 9)}
+    ],
+    'Яйца': [
+        {'amount': Decimal('2'), 'expiration_date': date(2023, 12, 12)},
+        {'amount': Decimal('3'), 'expiration_date': date(2023, 12, 11)}
+    ],
+    'Вода': [{'amount': Decimal('100'), 'expiration_date': None}]
+}
+
+print(expire(goods))
+# Вывод: [('Хлеб', Decimal('1'))]
+print(expire(goods, 1))
 # Вывод: [('Хлеб', Decimal('1')), ('Яйца', Decimal('3'))]
-# print(expire(goods, 2))
-#
-# goods = {
-#     'Хлеб': [
-#         {'amount': Decimal('1'), 'expiration_date': None},
-#         {'amount': Decimal('1'), 'expiration_date': date(2023, 12, 9)}
-#     ],
-#     'Яйца': [
-#         {'amount': Decimal('2'), 'expiration_date': date(2023, 12, 12)},
-#         {'amount': Decimal('3'), 'expiration_date': date(2023, 12, 11)}
-#     ],
-#     'Вода': [{'amount': Decimal('100'), 'expiration_date': None}]
-# }
-#
-# print(expire(goods))
-# # Вывод: [('Хлеб', Decimal('1'))]
-# print(expire(goods, 1))
-# # Вывод: [('Хлеб', Decimal('1')), ('Яйца', Decimal('3'))]
-# print(expire(goods, 2))
-# # Вывод: [('Хлеб', Decimal('1')), ('Яйца', Decimal('5'))]
+print(expire(goods, 2))
+# Вывод: [('Хлеб', Decimal('1')), ('Яйца', Decimal('5'))]
